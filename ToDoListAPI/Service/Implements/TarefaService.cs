@@ -20,37 +20,71 @@ namespace ToDoListAPI.Service.Implements
 
         public async Task<Tarefa?> GetById(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Tarefa = await _context.Tarefas.FirstAsync(t => t.Id == id);
+
+                return Tarefa;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Tarefa>> GetByStatus(string status)
         {
-            throw new NotImplementedException();
+            var Tarefa = await _context.Tarefas
+                .Where(t => t.Status.Contains(status))
+                .ToListAsync();
+
+            return Tarefa;
         }
 
         public async Task<IEnumerable<Tarefa>> GetByTexto(string texto)
         {
-            throw new NotImplementedException();
+            var Tarefa = await _context.Tarefas
+                .Where(t => t.Texto.Contains(texto))
+                .ToListAsync();
+
+            return Tarefa;
         }
 
         public async Task<IEnumerable<Tarefa>> GetByUrgencia(string urgencia)
         {
-            throw new NotImplementedException();
+            var Tarefa = await _context.Tarefas
+               .Where(t => t.Urgencia.Contains(urgencia))
+               .ToListAsync();
+
+            return Tarefa;
         }
 
         public async Task<Tarefa?> Create(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            await _context.Tarefas.AddAsync(tarefa);
+            await _context.SaveChangesAsync();
+
+            return tarefa;
         }
 
         public async Task<Tarefa?> Update(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            var TarefaUpdate = await _context.Tarefas.FindAsync(tarefa.Id);
+
+            if (TarefaUpdate is null)
+                return null;
+
+            _context.Entry(TarefaUpdate).State = EntityState.Detached;
+            _context.Entry(tarefa).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return tarefa;
         }
 
         public async Task Delete(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            _context.Tarefas.Remove(tarefa);
+            await _context.SaveChangesAsync();
         }
 
     }
