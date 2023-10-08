@@ -20,5 +20,7 @@ namespace ToDoListAPI.Model
         [Column(TypeName = "varchar")]
         [StringLength(100)]
         public string Status { get; set; } = string.Empty;
+
+        public virtual Categoria? Categoria { get; set; }
     }
 }

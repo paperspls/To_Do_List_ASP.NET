@@ -16,8 +16,6 @@ namespace ToDoListAPI
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
-
             // Add Controller Class
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(options =>

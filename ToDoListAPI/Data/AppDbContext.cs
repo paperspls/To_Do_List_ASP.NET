@@ -14,6 +14,12 @@ namespace ToDoListAPI.Data
         {
             modelBuilder.Entity<Tarefa>().ToTable("tb_tarefas");
             modelBuilder.Entity<Categoria>().ToTable("tb_categorias");
+
+            modelBuilder.Entity<Tarefa>()
+                  .HasOne(t => t.Categoria)
+                  .WithMany(c => c.Tarefa)
+                  .HasForeignKey("CategoriaId")
+                  .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Tarefa> Tarefas { get; set; } = null!;
