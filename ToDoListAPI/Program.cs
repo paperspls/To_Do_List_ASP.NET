@@ -14,6 +14,19 @@ namespace ToDoListAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Configuração do CORS
+            builder.Services.AddCors(options => {
+                options.AddPolicy(name: "MyPolicy",
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,6 +38,7 @@ namespace ToDoListAPI
 
             app.UseAuthorization();
 
+            app.UseCors("MyPolicy");
 
             app.MapControllers();
 
