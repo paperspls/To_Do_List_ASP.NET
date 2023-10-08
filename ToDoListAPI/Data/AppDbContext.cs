@@ -13,9 +13,11 @@ namespace ToDoListAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tarefa>().ToTable("tb_tarefas");
+            modelBuilder.Entity<Categoria>().ToTable("tb_categorias");
         }
 
         public DbSet<Tarefa> Tarefas { get; set; } = null!;
+        public DbSet<Categoria> Categorias { get; set; } = null!;
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -39,7 +41,7 @@ namespace ToDoListAPI.Data
             {
                 if (modifiedEntry is Auditable auditableEntity)
                 {
-                    auditableEntity.Data = new DateTimeOffset(DateTime.Now, new TimeSpan(-3, 0, 0));
+                    auditableEntity.Data = DateTimeOffset.UtcNow;
                 }
             }
 
