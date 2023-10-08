@@ -17,7 +17,6 @@ namespace ToDoListAPI.Service.Implements
         public async Task<IEnumerable<Categoria>> GetAll()
         {
             return await _context.Categorias
-                 .Include(c => c.Tarefa)
                  .ToListAsync();
         }
 
@@ -26,7 +25,6 @@ namespace ToDoListAPI.Service.Implements
             try
             {
                 var Categoria = await _context.Categorias
-                     .Include(c => c.Tarefa)
                      .FirstAsync(c => c.Id == id);
 
                 return Categoria;
@@ -41,7 +39,7 @@ namespace ToDoListAPI.Service.Implements
         public async Task<IEnumerable<Categoria>> GetByNome(string nome)
         {
             var Categoria = await _context.Categorias
-                .Include(c=> c.Tarefa)
+               
                 .Where(c => c.Nome.Contains(nome))
                 .ToListAsync();
 

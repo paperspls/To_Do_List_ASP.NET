@@ -66,7 +66,10 @@ namespace ToDoListAPI.Controller
             if (!validarTarefa.IsValid)
                 return StatusCode(StatusCodes.Status400BadRequest, validarTarefa);
 
-            await _tarefaService.Create(tarefa);
+            var Resposta =await _tarefaService.Create(tarefa);
+
+            if (Resposta is null)
+                return BadRequest("Categoria não encontrada!");
 
             return CreatedAtAction(nameof(GetById), new { id = tarefa.Id }, tarefa);
         }
@@ -85,7 +88,7 @@ namespace ToDoListAPI.Controller
             var Resposta = await _tarefaService.Update(tarefa);
 
             if (Resposta is null)
-                return NotFound("Tarefa não encontrada!");
+                return NotFound("Tarefa e/ou Categoria não encontrada!");
 
             return Ok(Resposta);
         }
