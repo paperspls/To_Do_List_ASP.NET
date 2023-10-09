@@ -42,6 +42,7 @@ namespace ToDoListAPI
             // Registrar as Classes e Interfaces Service
             builder.Services.AddScoped<ITarefaService, TarefaService>();
             builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
