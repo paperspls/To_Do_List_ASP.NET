@@ -31,7 +31,7 @@ Bem-vindo à To-Do List ASP.NET, uma aplicação para organização de tarefas d
 
 1. **Clone o Repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/todo-list-aspnet.git
+    git clone https://github.com/paperspls/To_Do_List_ASP.NET.git
     ```
 
 2. **Acesse o Diretório:**
