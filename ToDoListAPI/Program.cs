@@ -2,9 +2,14 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using ToDoListAPI.Data;
 using ToDoListAPI.Model;
+using ToDoListAPI.Security.Implements;
+using ToDoListAPI.Security;
 using ToDoListAPI.Service;
 using ToDoListAPI.Service.Implements;
 using ToDoListAPI.Validator;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ToDoListAPI
 {
@@ -43,6 +48,27 @@ namespace ToDoListAPI
             builder.Services.AddScoped<ITarefaService, TarefaService>();
             builder.Services.AddScoped<ICategoriaService, CategoriaService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
+
+            // Adicionar a Validação do Token JWT
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                var Key = Encoding.UTF8.GetBytes(Settings.Secret);
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                };
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -78,6 +104,8 @@ namespace ToDoListAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

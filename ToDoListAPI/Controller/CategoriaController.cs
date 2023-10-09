@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using ToDoListAPI.Model;
+using Microsoft.AspNetCore.Authorization;
 using ToDoListAPI.Service;
 
 namespace ToDoListAPI.Controller
 {
+    [Authorize]
     [Route("~/categorias")]
     [ApiController]
     public class CategoriaController : ControllerBase
