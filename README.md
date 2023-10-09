@@ -36,7 +36,7 @@ Bem-vindo à To-Do List ASP.NET, uma aplicação para organização de tarefas d
 
 2. **Acesse o Diretório:**
     ```bash
-    cd todo-list-aspnet
+    cd ToDoListAPI
     ```
 
 3. **Execute o Projeto:**
