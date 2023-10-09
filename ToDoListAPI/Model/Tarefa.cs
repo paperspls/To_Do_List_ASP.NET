@@ -22,5 +22,6 @@ namespace ToDoListAPI.Model
         public string Status { get; set; } = string.Empty;
 
         public virtual Categoria? Categoria { get; set; }
+        public virtual User? Usuario { get; set; }
     }
 }

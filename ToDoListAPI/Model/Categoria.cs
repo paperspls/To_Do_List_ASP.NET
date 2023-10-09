@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoListAPI.Model
@@ -14,7 +13,6 @@ namespace ToDoListAPI.Model
         [StringLength(255)]
         public string Nome { get; set; } = string.Empty;
 
-        [JsonIgnore]
         [InverseProperty("Categoria")]
         public virtual ICollection<Tarefa>? Tarefa { get; set; }
 

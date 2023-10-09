@@ -14,6 +14,7 @@ namespace ToDoListAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Add services to the container.
 
             // Add Controller Class
@@ -36,6 +37,7 @@ namespace ToDoListAPI
             // Validação das Entidades
             builder.Services.AddTransient<IValidator<Tarefa>, TarefaValidator>();
             builder.Services.AddTransient<IValidator<Categoria>, CategoriaValidator>();
+            builder.Services.AddTransient<IValidator<User>, UserValidator>();
 
             // Registrar as Classes e Interfaces Service
             builder.Services.AddScoped<ITarefaService, TarefaService>();
