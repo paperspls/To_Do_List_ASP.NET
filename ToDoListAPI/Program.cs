@@ -171,7 +171,7 @@ namespace ToDoListAPI
             {
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Blog Pessoal - v1");
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "To-Do List - v1");
                     options.RoutePrefix = string.Empty;
                 });
             }
