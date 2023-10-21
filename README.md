@@ -3,11 +3,11 @@
 </p>
 
 <div align="center">
-    <a href="https://blogpessoal-ltog.onrender.com/index.html">
+    <a href="https://todolistapi-1red.onrender.com/index.html">
         <img src="https://i.imgur.com/Kl8Vq3h.png" alt="Button Example">
     </a>
     <p>🕒 Aviso:
-   O host da aplicação é inicializado a cada acesso e pode demorar alguns minutos para carregar completamente. Se a página não carregar após 1 minuto, por favor, atualize-a para garantir uma experiência fluida! 
+   O host da aplicação é inicializado a cada acesso e pode demorar de 1-5 minutos para carregar completamente. Aguarde até 5 minutos e atualize-a para garantir uma experiência fluida! 
 </p>
 </div>
 
